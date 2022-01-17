@@ -1,0 +1,147 @@
+1.	Use HashSet to hold employee object.
+package generic;
+import java.util.HashSet;
+public class example {
+public static void main(String[] args)
+{
+	HashSet<emp>set=new HashSet<emp>();
+	emp e=new emp(1,"Ram","Systemadmin",30000.25);
+	set.add(e);
+	for(emp e1:set)
+	{
+		System.out.println(e.id+" "+e.name+" "+e.dep+" "+e.sal);
+	}
+}
+}
+package generic;
+public class emp {
+	int id;
+	String name,dep;
+	double sal;
+	
+	
+	/**
+	 * @param id
+	 * @param name
+	 * @param dep
+	 * @param sal
+	 */
+	public emp(int id, String name, String dep, double sal) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.dep = dep;
+		this.sal = sal;
+	}
+}
+Output:
+1 Ram Systemadmin 30000.25
+2.	Create HashMap application
+package generic2;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class mapping {
+	public static void main(String[] args)
+	{
+		HashMap<Integer ,Double>map=new HashMap<Integer,Double>();
+        map.put(1, 1.23);
+         map.put(5, 5.5);
+          map.put(2, 2.5);
+	   map.put(3, 3.25);
+	    map.put(8, 8.5);
+	    map.put(10, 10.95);
+	    map.put(100, 105.5);
+	    map.put(54, 89.5);
+	    map.put(67, 23.85);
+	    map.put(89, 0.5);
+	    System.out.println("hashmap:");
+	    for(Map.Entry m:map.entrySet())
+	    {
+	    	System.out.println(m.getKey()+" "+m.getValue());
+	    	
+	    }
+	}
+}
+Output:
+hashmap:
+1 1.23
+2 2.5
+3 3.25
+67 23.85
+100 105.5
+5 5.5
+54 89.5
+8 8.5
+89 0.5
+10 10.95
+
+3.	(a) HashMap application for key=string,value=string
+
+package generic3;
+import java.util.HashMap;
+import java.util.Map;
+
+public class example {
+	public static void main(String[] args)
+	{
+		HashMap<String ,String>map=new HashMap<String,String>();
+		map.put("1", "Apple");
+		map.put("10", "Chicku");
+		System.out.println(map);
+		/*for(Map.Entry m:map.entrySet())
+	    {
+	    	System.out.println(m.getKey()+" "+m.getValue());
+	    	
+	    }*/
+	}
+
+}
+Output:
+{1=Apple, 10=Chicku}
+
+b. key=string value=date
+package generic3;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class example {
+	public static void main(String[] args)
+	{
+		HashMap<String ,Date>map=new HashMap<String,Date>();
+		map.put("Today is", new java.util.Date());
+		System.out.println(map);
+		
+	}
+
+}
+Output:
+{Today is=Sat Jan 15 22:59:49 IST 2022}
+
+4.	Swapping of 2 numbers in array list
+
+package swap;
+import java.util.Arrays;
+public class swap1 {
+	public static <T> void swap(int[] arr ,int i1,int i2)
+	{
+		int temp = arr[i2];
+		arr[i2]=arr[i1];
+		arr[i1]=temp;
+	}
+ private static void swap3() {
+		// TODO Auto-generated method stub
+		int[] arr= {1,5,3,6,7};
+		swap(arr,0,2);
+		System.out.println("swapped" +Arrays.toString(arr));
+		
+}
+ public static void main(String[] args)
+ {
+	 swap3();
+ }
+}
+Output:
+swapped[3, 5, 1, 6, 7]
