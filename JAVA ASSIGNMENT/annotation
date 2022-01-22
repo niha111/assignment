@@ -101,6 +101,13 @@ public void display()
     System.out.println();	
  }
 }
+
+
+
+
+
+
+
 3) Create a custom annotation called @Execute to be applied on methods. Placing the @Execute method on a method implies that method should be invoked using Reflection API (invoking the method using Reflection API is out of scope of this assignments). The annotation @Execute should have an optional property "sequence" which can be given values such as 1, 2, 3... In the order of priority. In case the sequence property is not used the API may Invoke methods random order.
 
 
