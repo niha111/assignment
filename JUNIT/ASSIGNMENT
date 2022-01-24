@@ -6,3 +6,80 @@
 ACCEPTS AN INT ARRAY RETURNS NEW ARRAY OF SIZE 2, WHERE IN THE 0TH INDEX WILL HAVE THE MIN VALUES OF NA ARRAY AND 1ST INDEX WILL HAVE MAX VALUE OF THE ARRAY. PERFORM JUNIT TESTING OF THE METHOD FIND MIN MAX WITH AS MANY TEST CASES YOU CAN THINK OF EG. 
 MINNAXFINDER.FINDMINMAX(NEW INT[]{56,34,7,3,54,34,34,53});
 SHOULD RETURN A NEW ARRAY WITH MIN & MAX VALUE {3,56} AT 0TH AND 1ST INDEX RESPECTIVELY
+
+
+public class Minmax {
+
+public int[] minmaxFinder(int[] a) {
+		int[] arr=new int[2];
+		int min = a[0],max=0;
+	     
+	      for(int i=0; i<a.length; i++ ) {
+	         if(a[i]<min) {
+	            min = a[i];
+	         }
+	      }
+	       arr[0]=min;
+	       for(int i=0; i<a.length; i++ ) {
+		         if(a[i]>max) {
+		            max = a[i];
+		         }
+		      }
+	       arr[1]=max;
+	  return arr;
+	       
+	}
+
+}
+
+ #TESTCASE
+ import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class MinmaxX {
+
+	int[] expected= {7,21};
+	int[] expected1= {5,98};
+	int[] expected2= {1,6};
+	@Test
+	void test() {
+		Minmax mm=new Minmax();
+		int[] a= {20,10,4,15,21};
+		int[] min=mm.minmaxFinder(a);
+		assertArrayEquals(expected,min);  //WithArray
+		//assertEquals(4,Min[0]);   //With SingleIndex
+		/*System.out.println(Min);
+		int[] max=mm.MinmaxFinder(a);
+		assertEquals(21,max[1]);
+		System.out.println(max[1]);*/
+		
+	}
+	@Test
+	void test1() {
+		Minmax mm=new Minmax();
+		int[] a= {45,7,48,5,98};
+		int[] min=mm.minmaxFinder(a);
+		
+		assertArrayEquals(expected1,min); 
+		//System.out.println(min[0]+" "+ min[1]);
+	}
+	@Test
+	void test2() {
+		Minmax mm=new Minmax();
+		int[] a= {2,5,4,1,6};
+		int[] min=mm.minmaxFinder(a);
+		assertArrayEquals(expected2,min); 
+	}
+
+}
+
+
+
+
+
+
+
+
+
+2
