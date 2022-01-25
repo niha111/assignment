@@ -1,0 +1,162 @@
+QUESTION 1
+
+
+#ADRESS.JAVA
+
+public class Address {
+
+	private String street,city,state,country,zip;
+	
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String toString() {
+		return city+" "+" "+state+" "+country+" "+""+zip+" "+street;
+	}
+	
+}
+
+
+
+
+
+#COUSTOMER.JAVA
+
+
+
+
+public class Customer {
+	
+	private String custNM,custID,custNO;
+	
+	private Address address;
+
+	public String getCustNM() {
+		return custNM;
+	}
+
+	public void setCustNM(String custNM) {
+		this.custNM = custNM;
+	}
+
+	public String getCustID() {
+		return custID;
+	}
+
+	public void setCustID(String custID) {
+		this.custID = custID;
+	}
+
+	public String getCustNO() {
+		return custNO;
+	}
+
+	public void setCustNO(String custNO) {
+		this.custNO = custNO;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	void show(){  
+	    System.out.println(custID+" "+custNM+" "+custNO);  
+	    System.out.println(address);  
+	}  
+}  
+
+
+
+
+CUSTOMERADRESS.XML
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">	
+
+	<bean id="address1" class="Address" >
+	<property name="city" value=" ANDHRA " />
+	<property name="state" value=" AP " />
+	<property name="country" value=" INDIA " />
+	<property name="zip" value=" 522101 " />
+	<property name="street" value=" BAPATLA" />
+	</bean>
+	
+	<bean id="obj" class="Customer" >
+	<property name="custID" value="20" />
+	<property name="custNM" value="NIHARIKA" />
+	<property name="custNO" value="9000000123" />
+	<property name="address" ref="address1" />
+	</bean>
+
+
+
+
+</beans>
+
+
+
+
+
+TEST CLASS.JAVA
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestClass {
+
+private static ApplicationContext context;
+	
+	public static void main(String[] args) {
+		context=new ClassPathXmlApplicationContext("CustomerAddress.xml");
+	
+		
+		Customer cust= (Customer) context.getBean("obj");
+		cust.show();
+	
+	}
+	
+}
