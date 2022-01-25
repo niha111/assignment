@@ -1,4 +1,4 @@
-#JUNIT
+#JUNIT  ASSIGNMENT
 
 
 
@@ -8,78 +8,302 @@ MINNAXFINDER.FINDMINMAX(NEW INT[]{56,34,7,3,54,34,34,53});
 SHOULD RETURN A NEW ARRAY WITH MIN & MAX VALUE {3,56} AT 0TH AND 1ST INDEX RESPECTIVELY
 
 
-public class Minmax {
+1.	package NewPackageTest;
 
-public int[] minmaxFinder(int[] a) {
-		int[] arr=new int[2];
-		int min = a[0],max=0;
-	     
-	      for(int i=0; i<a.length; i++ ) {
-	         if(a[i]<min) {
-	            min = a[i];
-	         }
-	      }
-	       arr[0]=min;
-	       for(int i=0; i<a.length; i++ ) {
-		         if(a[i]>max) {
-		            max = a[i];
-		         }
-		      }
-	       arr[1]=max;
-	  return arr;
-	       
-	}
-
+public class MinMaxFinder
+{
+	int[] NewArr()
+    {
+		int[] element;
+		int [] arr = {1,23,45,7,456};
+		
+		int max = arr[0];
+        int min = arr[0];
+        
+        for (int i = 1; i < arr.length; i++)
+        {
+            // if the current element is greater than the maximum found so far
+            if (arr[i] > max)
+            {
+                max = arr[i];
+            }
+ 
+            // if the current element is smaller than the minimum found so far
+            else if (arr[i] < min)
+            {
+                min = arr[i];
+            }
+        }
+        
+        
+        int [] arr2 = {min, max};
+        
+        element = arr2;
+		return element;
+        }
+		
 }
 
- #TESTCASE
- import static org.junit.jupiter.api.Assertions.*;
+MinMaxTestFinderTest:
+
+package NewPackageTest;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class MinmaxX {
+class MinMaxFinderTest {
 
-	int[] expected= {7,21};
-	int[] expected1= {5,98};
-	int[] expected2= {1,6};
 	@Test
-	void test() {
-		Minmax mm=new Minmax();
-		int[] a= {20,10,4,15,21};
-		int[] min=mm.minmaxFinder(a);
-		assertArrayEquals(expected,min);  //WithArray
-		//assertEquals(4,Min[0]);   //With SingleIndex
-		/*System.out.println(Min);
-		int[] max=mm.MinmaxFinder(a);
-		assertEquals(21,max[1]);
-		System.out.println(max[1]);*/
-		
+	void test()
+	{
+		MinMaxFinder mn = new MinMaxFinder();
+		int [] arr = {1,456};
+		int[] expected = arr;
+		int[] actual = mn.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 1");
 	}
+
 	@Test
-	void test1() {
-		Minmax mm=new Minmax();
-		int[] a= {45,7,48,5,98};
-		int[] min=mm.minmaxFinder(a);
-		
-		assertArrayEquals(expected1,min); 
-		//System.out.println(min[0]+" "+ min[1]);
+	void test1()
+	{
+		MinMaxFinder mn = new MinMaxFinder();
+		int [] arr = {1,456,23};
+		int[] expected = arr;
+		int[] actual = mn.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 2");
 	}
+	
 	@Test
-	void test2() {
-		Minmax mm=new Minmax();
-		int[] a= {2,5,4,1,6};
-		int[] min=mm.minmaxFinder(a);
-		assertArrayEquals(expected2,min); 
+	void test2()
+	{
+		MinMaxFinder mn = new MinMaxFinder();
+		int [] arr = {1,456,23,45};
+		int[] expected = arr;
+		int[] actual = mn.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 3");
+	}
+}
+
+
+2.	package NewPackageTest;
+
+public class ObjectQuestion2
+{
+	Object[] NewArr()
+    {
+		Object[] element;
+		int [] arr = {1,23,45,7,456};
+		
+		int max = arr[0];
+        int min = arr[0];
+        
+        for (int i = 1; i < arr.length; i++)
+        {
+            // if the current element is greater than the maximum found so far
+            if (arr[i] > max)
+            {
+                max = arr[i];
+            }
+ 
+            // if the current element is smaller than the minimum found so far
+            else if (arr[i] < min)
+            {
+                min = arr[i];
+            }
+        }
+        
+        
+        Object [] arr2 = {min, max};
+        
+        element = arr2;
+		return element;
+        }
+}
+
+ObjectQuestion2Test:
+
+
+package NewPackageTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class ObjectQuestion2Test
+{
+
+	@Test
+	void test()
+	{
+		ObjectQuestion2 obj = new ObjectQuestion2();
+		Object [] arr = {1,456};
+		Object[] expected = arr;
+		Object[] actual = obj.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 1");
+		System.out.println(actual);
+	}
+
+	@Test
+	void test1()
+	{
+		ObjectQuestion2 obj = new ObjectQuestion2();
+		Object [] arr = {1,456,23};
+		Object[] expected = arr;
+		Object[] actual = obj.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 2");
+	}
+	
+	@Test
+	void test2()
+	{
+		ObjectQuestion2 obj = new ObjectQuestion2();
+		Object [] arr = {1,456,23,45};
+		Object[] expected = arr;
+		Object[] actual = obj.NewArr();
+		assertArrayEquals(expected, actual, "TestCase 3");
+	}
+}
+
+
+3.	package NewPackageTest;
+
+import java.util.Scanner;
+
+public class BankAcount
+{
+	private int balance;
+	
+	public void BankOperations()
+	{
+		balance = 100;
+	}
+	
+	public int getbalance()
+	{
+		return balance;
+	}
+	
+	public void withdraw(int amount) throws InsufficientFundsException
+	{
+		if (amount < balance)
+		{
+			int newBalance = balance - amount;
+		}
+		else
+		{
+			throw new InsufficientFundsException(amount);
+		}
+			
+	}
+}
+
+package NewPackageTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class BankAcountTest {
+
+	@Test
+	public void setUp() throws InsufficientFundsException
+	{
+		BankAcount bn = new BankAcount();
+		assertThrows(InsufficientFundsException.class, () -> bn.withdraw(2));
 	}
 
 }
 
+package NewPackageTest;
+
+public class InsufficientFundsException extends Exception
+{
+	 private final int amount;
+
+	    public InsufficientFundsException(int amount)
+	    {
+	        this.amount = amount;
+	    }
+
+	    public int getAmt()
+	    {
+	        return amount;
+	    }
+	
+}
 
 
 
+4.	package NewPackageTest;
+
+public class ClassA
+{
+	void abc()
+	{
+		System.out.println("This is the add method of Class A");
+	}
+}
+
+package NewPackageTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
+class ClassATest
+{
+	ClassA abc;
+	
+	@BeforeAll			//#1
+	static void BeforeAll()
+	{
+		System.out.println("This Method will run Before all the methods present in the class");
+	}
+	
+	@Test
+	void Test()				//#3
+	{
+		System.out.println("Test");
+	}
+
+	@BeforeEach
+	void Method2()			//#2
+	{
+		abc = new ClassA();
+		System.out.println("This is Method2 (Before Each)");
+	}
+	
+	@AfterEach			//#4
+	void Method3()
+	{
+		System.out.println("AfterEach");
+	}
+	
+	@Test				//#5
+	void Test2()
+	{
+		System.out.println("Test2");
+	}
+	
+	@Test				//#5
+	void Test3()
+	{
+		System.out.println("Test3");
+	}
+	
+	@AfterAll			//#6
+	static void Method4()
+	{
+		System.out.println("This is Method4 (After All)");
+	}
+	
+
+}
 
 
-
-2
