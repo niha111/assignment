@@ -1,0 +1,455 @@
+PROGRAM TO DEMONSTRATE THE USE OF @RESOURCE @inject @required annotations
+
+# @resource
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.spring</groupId>
+    <artifactId>SpringResourceAnnotationExample</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>
+
+
+
+
+
+
+
+#COMPANY CLASS
+
+package com.spring.pojo;
+ 
+public class Company {
+ 
+    private String name;
+    private String location;
+ 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Company [name=" + name + ", location=" + location + "]";
+    }
+}
+
+
+
+IMPLEMENTATION EMPLOYEE
+EMPLOYEE.JAVA
+
+
+package com.spring.pojo;
+ 
+import javax.annotation.Resource;
+ 
+public class Employee {
+ 
+    private String id;
+    private String name;
+ 
+    @Resource(name="mycompany")
+    private Company company;
+ 
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Company getCompany() {
+        return company;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + name + ", company=" + company.toString() + "]";
+    }
+}
+
+
+IMPLEMENTAION OF UTILITY CLASS
+APPMAIN. JAVA
+
+
+package com.spring.util;
+ 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+ 
+import com.spring.pojo.Employee;
+ 
+public class AppMain {
+ 
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {
+ 
+        ApplicationContext ac = new ClassPathXmlApplicationContext("resource-annotation.xml");
+ 
+        Employee emp = ac.getBean("myemployee", Employee.class);
+        System.out.println(emp.toString());
+    }
+}
+
+
+
+RESOURCE ANNOTATION FILE
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+    <!-- To activate the '@Resource' annotation in the spring framework -->
+    <context:annotation-config />
+ 
+    <bean id="mycompany" class="com.spring.pojo.Company">
+        <property name="name" value="Test Pvt. Ltd." />
+        <property name="location" value="India" />
+    </bean>
+ 
+    <bean id="myemployee" class="com.spring.pojo.Employee">
+        <property name="id" value="123456" />
+        <property name="name" value="Charlotte O' Neil" />
+    </bean>
+</beans>
+
+
+
+
+
+OUTPUT
+
+JAN 25, 2021 14:33:14 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bebdb06: startup date [Mon JAN 25 2021 14:33:14 PM]; root of context hierarchy
+JAN 225, 2021 14:33:14 PM  org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [resource-annotation.xml]
+Employee [id=123456, name=Charlotte O' Neil, company=Company [name=Test Pvt. Ltd., location=India]]
+
+
+
+
+
+
+
+
+
+#@INJECT
+
+
+public class Address {
+
+ private String street;
+ private String city;
+ private String state;
+
+ public Address() {
+
+ }
+
+
+ public String getStreet() {
+  return street;
+ }
+
+
+ public void setStreet(String street) {
+  this.street = street;
+ }
+
+
+ public String getCity() {
+  return city;
+ }
+
+
+ public void setCity(String city) {
+  this.city = city;
+ }
+
+
+ public String getState() {
+  return state;
+ }
+
+
+ public void setState(String state) {
+  this.state = state;
+ }
+
+}
+
+
+
+TEST
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+
+ public static void main(String[] args) {
+
+
+ApplicationContext context = 
+    new ClassPathXmlApplicationContext(("inject.xml"));
+
+
+Employee employee = (Employee)context.getBean("employee");
+
+  if(employee.getAddress()==null){
+   System.out.println("The Employee Name : " + employee.getName());
+   System.out.println("The Employee Age : " + employee.getAge());
+   System.out.println("The Employee Address : " + "is not provided");
+  }
+  else{
+   System.out.println("The Employee Name : " + employee.getName());
+   System.out.println("The Employee Age : " + employee.getAge());
+   System.out.println("The Employee Address : " +   
+     employee.getAddress().getStreet() + " " +
+     employee.getAddress().getCity() + " " +
+     employee.getAddress().getState());
+  }
+ }
+
+}
+
+SPRING.XML
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+ <bean
+  class="org.springframework.beans.factory.
+annotation.AutowiredAnnotationBeanPostProcessor">
+ </bean>
+
+ <bean id="employee" class="com.hubberspot.spring.inject.Employee">
+
+  <property name="age" value="28" />
+  <property name="name" value="Jonty" />
+
+
+ </bean>
+
+ <bean id="address" class="com.hubberspot.spring.inject.Address">
+
+  <property name="street" value="Town Hall Street" />
+  <property name="city" value="Pune" />
+  <property name="state" value="Maharashtra"></property>
+ </bean>
+
+</beans>
+
+
+
+
+#@REQUIRED
+
+ACTIVATING @REQUIRED
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+     
+</beans>
+
+
+
+
+#DEPENDENCIES
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.spring</groupId>
+    <artifactId>SpringRequiredAnnotation</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.0.6.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.6.RELEASE</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>
+
+
+
+
+
+
+
+EMPLOYEE.JAVA
+
+
+package com.spring.pojo;
+ 
+import org.springframework.beans.factory.annotation.Required;
+ 
+public class Employee {
+ 
+    private String name;    
+    private String designation;
+    private String company;
+ 
+    @Required
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+ 
+    @Required
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+    public String getDesignation() {
+        return designation;
+    }
+ 
+    public void setCompany(String company) {
+        this.company = company;
+    }
+    public String getCompany() {
+        return company;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Employee [name=" + name + ", designation=" + designation + ", company=" + company + "]";
+    }
+}
+
+
+
+
+
+#APP MAIN .JAVA
+
+package com.spring;
+ 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+ 
+import com.spring.pojo.Employee;
+ 
+public class AppMain {
+ 
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {        
+        ApplicationContext ac = new ClassPathXmlApplicationContext("required-annotation.xml");
+ 
+        Employee emp = ac.getBean("myemployee", Employee.class);
+        System.out.println(emp.toString());
+    }
+}
+
+
+
+REQUIRED ANNOTATION.XML
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+    <!-- Used to activate the @Required annotation in Spring -->
+    <context:annotation-config />
+ 
+    <bean id="myemployee" class="com.spring.pojo.Employee">
+        <!-- Required property -->
+        <property name="name" value="Charlotte O' Neil" />
+        <!-- Required property -->
+        <property name="designation" value="Technical Leader" />
+        <property name="company" value="Test Ltd." />
+    </bean>
+</beans>
+
+
+
+
+OUTPUT
+
+
+
+JAN 25, 2021 14:33:14 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bebdb06: startup date [Mon JAN 25 2021 14:33:14 PM]; root of context hierarchy
+JAN 225, 2021 14:33:14 PM  org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [required-annotation.xml]
+Employee [name=Charlotte O' Neil, designation=Technical Leader, company=Test Ltd.]
+
+
+
+
+
+
