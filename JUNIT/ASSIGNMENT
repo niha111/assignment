@@ -7,8 +7,7 @@ ACCEPTS AN INT ARRAY RETURNS NEW ARRAY OF SIZE 2, WHERE IN THE 0TH INDEX WILL HA
 MINNAXFINDER.FINDMINMAX(NEW INT[]{56,34,7,3,54,34,34,53});
 SHOULD RETURN A NEW ARRAY WITH MIN & MAX VALUE {3,56} AT 0TH AND 1ST INDEX RESPECTIVELY
 
-
-1.	package NewPackageTest;
+	package NewPackageTest;
 
 public class MinMaxFinder
 {
@@ -86,7 +85,10 @@ class MinMaxFinderTest {
 }
 
 
-2.	package NewPackageTest;
+2. .Modify the above method to return a single object representing min and max value of the pass array. Define new sets of Junít Test cases of this modified method.	
+
+
+package NewPackageTest;
 
 public class ObjectQuestion2
 {
@@ -166,7 +168,11 @@ class ObjectQuestion2Test
 }
 
 
-3.	package NewPackageTest;
+3.3.Write a Bank Account class with method withdraw which accepts amount to be withdrawn from the account (amount to be deducted from the balance of the account). In case there are insufficient funds a InsufficientFunds Expcetion should be raised. After defining the method perform Junit testing to check whether the insufficientFundsException is raised when you try to withdraw amount that is over and above the account balance.BankAccount withdraw(20,000); should raise the insufficient Funds Exception if the balance in the account is less than 20,000.
+
+
+
+package NewPackageTest;
 
 import java.util.Scanner;
 
@@ -235,7 +241,12 @@ public class InsufficientFundsException extends Exception
 
 
 
-4.	package NewPackageTest;
+4.4.Write a Junit Testing to show the use of Lifecycle hooks annotation such as @BeforeAll,@BeforeEach @AfterEach and @After All
+
+
+
+
+package NewPackageTest;
 
 public class ClassA
 {
@@ -305,5 +316,8 @@ class ClassATest
 	
 
 }
+
+
+
 
 
