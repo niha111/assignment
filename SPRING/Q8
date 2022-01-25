@@ -1,0 +1,167 @@
+INITIALIZINF AND DISPOZAL BEAN
+
+
+#DatabaseInitiaizer.java AS THE BEAN INTIALIZER
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DatabaseInitiaizer implements InitializingBean, DisposableBean {
+
+    private List < User > listOfUsers = new ArrayList < > ();
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        User user = new User(1, "User");
+        User user1 = new User(2, "Admin");
+        User user2 = new User(3, "SuperAdmin");
+
+        listOfUsers.add(user);
+        listOfUsers.add(user1);
+        listOfUsers.add(user2);
+        System.out.println("-----------List of users added in init() method ------------");
+        for (Iterator < User > iterator = listOfUsers.iterator(); iterator.hasNext();) {
+            User user3 = (User) iterator.next();
+            System.out.println(user3.toString());
+        }
+        // save to database
+    }
+
+    @Override
+    public void destroy() {
+        // Delete from database
+        listOfUsers.clear();
+        System.out.println("-----------After of users removed from List in destroy() method ------------");
+        for (Iterator < User > iterator = listOfUsers.iterator(); iterator.hasNext();) {
+            User user3 = (User) iterator.next();
+            System.out.println(user3.toString());
+        }
+        System.out.println("List is clean up ..");
+    }
+}
+
+
+
+
+Create POJO - User.java
+
+public class User {
+    private Integer id;
+    private String name;
+
+    public User() {}
+
+    public User(Integer id, String name) {
+        super();
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + "]";
+    }
+}
+Annotation Based Configuration - AppConfig.java
+Create AppConfig class and write the following code in it.
+package net.javaguides.spring;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "net.javaguides.spring")
+public class AppConfig {
+ 
+}
+
+
+
+
+Application.java
+
+
+
+Let's create a main class and run an application.
+package net.javaguides.spring;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Application {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        context.close();
+    }
+}
+Output
+-----------List of users added in init() method ------------
+User [id=1, name=User]
+User [id=2, name=Admin]
+User [id=3, name=SuperAdmin]
+-----------After of users removed from List in destroy() method -------
+
+
+
+
+
+POM.XML
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.javaguides.spring</groupId>
+    <artifactId>spring-bean-lifecycle</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.0.RELEASE</version>
+        </dependency>  
+    </dependencies>
+    <build>
+     <sourceDirectory>src/main/java</sourceDirectory>
+         <plugins>
+            <plugin>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.5.1</version>
+               <configuration>
+                   <source>1.8</source>
+                   <target>1.8</target>
+               </configuration>
+           </plugin>
+         </plugins>
+     </build>
+</project>
