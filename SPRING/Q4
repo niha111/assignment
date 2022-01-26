@@ -1,0 +1,297 @@
+4. Example on @Controller, @Service, @Repository, @Autowired, @Configuration and @Bean. Modify the above application, use annotations and java based configuration.
+@Bean
+
+package spring_exP;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+//@Configuration
+public class ApplicationConfiguration {
+	@Bean(name="demoService")
+    public DemoManager helloWorld() 
+    {
+        return new DemoManagerImpl();
+    }
+}
+
+
+
+package spring_exp;
+
+public interface DemoManager {
+	 public String getServiceName();
+}
+package spring_ex4;
+
+public class DemoManagerImpl implements DemoManager
+{
+    public String getServiceName()
+    {
+        return "Hello!!!!";
+    }
+}
+
+
+
+package spring_exp;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class VerifySpringCoreFeature {
+	    public static void main(String[] args)
+	    {
+	        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+	 
+	        DemoManager  obj = (DemoManager) context.getBean("demoService");
+	 
+	        System.out.println( obj.getServiceName() );
+	    }
+}
+
+
+output
+
+
+
+
+
+Addition of first and second = 4
+
+
+
+# @contoller
+
+
+
+package spring_exp;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class SpringMainClass {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("spring_exp4");
+		context.refresh();
+		MathController ms = context.getBean(MathController.class);
+		int result = ms.add(2, 2);
+		System.out.println("Addition of first and second = " + result);
+		context.close();
+	}
+}
+
+
+package spring_exp;
+package spring_exp;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+
+//@Service("ms")
+@Controller
+public class MathController {
+	public int add(int x, int y) {
+		return x + y;
+	}
+}
+
+output
+
+Addition of first and second = 4
+
+# @Service
+
+package spring_exp;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service("ms")
+//@Component
+public class MathService {
+	public int add(int x, int y) {
+		return x + y;
+	}
+}
+
+package spring_exp;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class SpringMainClass {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("spring_exp4");
+		context.refresh();
+		MathService ms = context.getBean(MathService.class);
+		int result = ms.add(2, 2);
+		System.out.println("Addition of first and second = " + result);
+		context.close();
+	}
+}
+
+
+output
+Addition of first and second = 4
+
+
+#  @Autowired
+package maths_example;
+
+import org.springframework.beans.factory.BeanFactory;
+// org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Repository;
+//import org.springframework.core.io.FileSystemResource;
+//@Repository
+public class Mainbean {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//BeanFactory factory= new XmlBeanFactory(new FileSystemResource("spring.xml"));
+		 ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
+		  Shape shape=(Shape)context.getBean("circle");
+		    shape.draw();
+
+	}
+
+}
+
+
+
+
+
+package maths_example;
+
+public class Triangle implements Shape {
+	private Point PointA;
+	private Point PointB;
+	private Point PointC;
+	public Point getPointA() {
+		return PointA;
+	}
+	public void setPointA(Point pointA) {
+		PointA = pointA;
+	}
+	public Point getPointB() {
+		return PointB;
+	}
+	public void setPointB(Point pointB) {
+		PointB = pointB;
+	}
+	public Point getPointC() {
+		return PointC;
+	}
+	public void setPointC(Point pointC) {
+		PointC = pointC;
+	}
+	public void draw()
+	{
+		System.out.println("Draw triangle");
+		System.out.println(getPointA().getX()+ " "+getPointA().getY());
+		System.out.println(getPointB().getX()+ " "+getPointB().getY());
+		System.out.println(getPointC().getX()+ " "+getPointC().getY());
+	}
+	
+
+
+}
+
+package maths_example;
+
+public interface Shape {
+	public void draw();
+
+}
+package maths_example;
+
+public class Point {
+	private int x;
+	private int y;
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+
+}
+
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+//@Component
+//@Repository
+public class Circle implements Shape {
+	private Point center;
+
+	public void draw()
+	{
+		System.out.println("draw circle");
+		System.out.println("circle point" +center.getX() +center.getY());
+	}
+	public Point getCenter() {
+		return center;
+	}
+
+//@Autowired
+	public void setCenter(Point center) {
+		this.center = center;
+	}
+
+}
+
+
+
+spring.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+
+xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id = "triangle"  class="maths_example.Triangle">
+	<property name="PointA" ref="pointA"/>
+<property name="PointB" ref="pointB"/>
+<property name="PointC" ref="pointC"/>
+</bean>
+<bean id = "pointA"  class="maths_example.Point">
+<property name="x" value="0"/>
+<property name="y" value="10"/>
+</bean>
+<bean id = "pointB"  class="maths_example.Point">
+<property name="x" value="10"/>
+<property name="y" value="10"/>
+</bean>
+<bean id = "pointC"  class="maths_example.Point">
+<property name="x" value="40"/>
+<property name="y" value="35"/>
+</bean> 
+<bean id = "center"  class="maths_example.Point">
+<property name="x" value="40"/>
+<property name="y" value="35"/>
+</bean> 
+
+ <bean id = "circle"  class="maths_example.Circle">
+ <!-- <property names="center" ref="pointA"/> -->
+</bean> 
+ <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor">
+	</bean>
+
+	
+</beans>
+
+
+
+
+
+OUTPUT
+
+draw circle
+circle point4035
