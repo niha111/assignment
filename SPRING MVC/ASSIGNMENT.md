@@ -5,7 +5,7 @@ Q1
 HELLO CONTROLLER.JAVA
 
 
-
+```java
           package hellocontroller;
           import org.springframework.stereotype.Controller;
           import org.springframework.ui.Model;
@@ -24,24 +24,25 @@ HELLO CONTROLLER.JAVA
 	   }
 	   }
 	   }
+```
 	   
 	   
 HELLOPAGE.JSP
 
 
 
-#CODE
+```html
 <html>
  <body> <h1>First Spring MVC Application Demo</h1>
 <h2>${welcomeMessage}</h2>   
 </body>
 </html>
-
+```
 
 SPRING-DISPATCHER.SERVLET
 
 
-
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns = "http://www.springframework.org/schema/beans"
    xmlns:context = "http://www.springframework.org/schema/context"
@@ -65,12 +66,13 @@ SPRING-DISPATCHER.SERVLET
           </property>
     </bean> 
 </beans>
-
+```
 
 
 
 
 WEB.XML
+```
 <display-name>Hellowebpage</display-name>
    <servlet>
     <servlet-name>spring-dispatcher</servlet-name>
@@ -83,6 +85,7 @@ WEB.XML
     <url-pattern>/</url-pattern>
 </servlet-mapping>
 </web-app>
+```
 	
 	
 
