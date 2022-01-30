@@ -4,12 +4,14 @@ This is the same as supplied value hence it is an Armstrong number.
 
 //file name - Armstrong.java
 
+
+```java
+
 import java.util.Scanner;
 import java.lang.Math;
 
 public class Armstrong {
-
-	public static void main(String[] args) {
+public static void main(String[] args) {
 	
 		//declaring variables	
 		int n, temp, rem, res = 0, i = 0;
@@ -46,24 +48,25 @@ public class Armstrong {
 		}
 	}
 }
-Output:
 
+```
+Output:
+```
 Enter the number: 
 153
 153 is an ArmStrong number.
-
+```
 
 
 
 2.Find out all the Armstrong numbers falling in the range of 100-999
 //file name - Armstrong_range.java
 
+```java
 import java.util.Scanner;
 import java.lang.Math;
-
 public class Armstrong_range {
-
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		//condiser a loop to initiate the range of numbers
 		
@@ -96,21 +99,24 @@ public class Armstrong_range {
 		}
 	}
 }
-Output:
 
+Output:
 153 is an ArmStrong number.
 370 is an ArmStrong number.
 371 is an ArmStrong number.
-407 is an ArmStrong number.
+
+```
+
 
 
 
 3.Find out the simple as well as the compound interest of supplied
 //file name - SC_Intrest.java
 
+```java
+
 import java.util.Scanner;
 import java.lang.Math;
-
 public class SC_Intrest {
 	
 	public static void main(String[] args) {
@@ -148,7 +154,7 @@ Enter no. of years :
 12
 Simple Interest : 8400.0
 compound Interest : 12521.915889608248
-
+```
 
 
 4.Supply marks of three subject and declare the result, result declaration is based on below conditions:
@@ -157,11 +163,10 @@ Condition 2: Any two subjects marks are greater than 60 is Promoted
 Condition 3: Any one subject mark is greater than 60 or all subjects marks less than 60 is failed
 //file name - Condition_Class.java
 
+```java
 import java.util.Scanner;
-
 public class Condition_Class {
-
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		//declaring variables
 		double sub1, sub2, sub3;
@@ -191,9 +196,11 @@ public class Condition_Class {
 			System.out.println("Failed");
 		}
 	}
-}
-Output:
+	}
+	
 
+Output:
+```
 Enter marks in subject 1: 
 76
 Enter marks in subject 2: 
@@ -201,11 +208,11 @@ Enter marks in subject 2:
 Enter marks in subject 3: 
 13
 Failed
+```
 
 
 
-
-
+```
 5.Calculate the income tax on the basis of following table.
 Note:-Assume slab is consider for Male, Female as well as Senior citizen
 Slab	Income range	Tax Payable in percent
@@ -215,7 +222,7 @@ Slab C	3,00,001 - 5,00,000	20%
 Slab D	5,00,001 - 10,00,000	30%
 Accept CTC from user and display tax amount
 //file name - Income_Tax.java
-
+```java
 import java.util.Scanner;
 
 public class Income_Tax {
@@ -255,21 +262,25 @@ public class Income_Tax {
    	}	
    }
 }
+
+
 Output:
 
 Enter income : 
 400000
 Income tax payable is : 80000.0
+```
 
 
 
-
-
-6.Consider a CUI based application, where you are asking a user to enter his Login name and password, after entering the valid user-id and password it will print the message "Welcome" along with user name. As per the validation is concerned, the program should keep a track of login attempts. After three attempts a message should be flashed saying "Contact Admin" and the program should terminate.
-
-
+```
+6.Consider a CUI based application, where you are asking a user to enter his Login name and password, 
+after entering the valid user-id and password it will print the message "Welcome" along with user name.
+As per the validation is concerned, the program should keep a track of login attempts. After three attempts
+a message should be flashed saying "Contact Admin" and the program should terminate.
 //file name - Login_User.java
 
+```java
 import java.util.Scanner;
 
 public class Login_User {
@@ -312,8 +323,11 @@ public class Login_User {
 		}
 	}
 }
-Output:
+```
 
+```
+Output:
+```
 Enter the login name : 
 ngopalam
 Enter password : 
@@ -324,10 +338,9 @@ ngopalam
 Enter password : 
 Niha111
 Welcome NIHARIKA
-
-
-
-      7.  There is an Array which is of the size 15, which may or may not be sorted. You should write a program to accept a number and search if it in contained in the array
+```
+```
+7.  There is an Array which is of the size 15, which may or may not be sorted. You should write a program to accept a number and search if it in contained in the array
         Example:
 Array Elements	5	12	14	6	78	19	1	23	26	35	37	7	52	86	47
 Indexes	0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
@@ -339,7 +352,7 @@ Value to be search is 19
 
 
 
-
+```java
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -404,18 +417,23 @@ public class Bubble_Sort {
 		System.out.println(Arrays.toString(arr));
 	}
 }
-Output:
 
+
+```
+Output:
+```
 [5, 12, 14, 6, 78, 19, 1, 23, 26, 35, 37, 7, 52, 86, 47]
 Sorted Array :
 [1, 5, 6, 7, 12, 14, 19, 23, 26, 35, 37, 47, 52, 78, 86]
 
 
+```
+8.Accept the marks of three students for the subject say A, B, C.
+Find the total scored and the average in all the subjects. 
+Also Find the Total and Average scored by students in each respective Subject.
 
-
-8.Accept the marks of three students for the subject say A, B, C. Find the total scored and the average in all the subjects. Also Find the Total and Average scored by students in each respective Subject.
 //file name - Avg_Marks.java
-
+```java
 import java.util.Scanner;
 
 public class Avg_Marks {
@@ -472,8 +490,10 @@ public class Avg_Marks {
 		}
 	}
 }
-Output:
 
+```
+Output:
+```
 Enter the marks 
 89
 87
@@ -493,3 +513,4 @@ Average marks for student 1 of each subject is: 81.0
 
 Total marks for student 2 of each subject is: 230.0
 Average marks for student 2 of each subject is: 76.66666666666667
+```
