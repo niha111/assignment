@@ -3,9 +3,6 @@
                                      
                                      
                                      
-                                     
-                                     
-                                     
 1. Given a Tree Map<Long, Contact> which has phone numbers for keys and contact objects for values.
 Write solutions to
 
@@ -18,61 +15,63 @@ Contacts should be stored in descending order of phone number
 
 Contact Class:
 
-PhoneNumer: Name: Email: Gender:
+PhoneNumer:
+Name: 
+Email:
+Gender:
 
 
-//class name Tree1
-	
-
+```java
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import tree.contact.gender;
 public class Tree1 {
-	public static void main(String[] args)
+public static void main(String[] args)
 	{
-		Map<Long,Contact> map=new TreeMap<Long,Contact>();
-		Contact c1=new Contact((long)89034567,"rohith","rohith@.com",gender.m);
-		Contact c2=new Contact((long)990088,"gopi","gopi@.com",gender.m);
-		Contact c3=new          Contact((long)556677,"chinni","chinni@.com",gender.Fe);
-		Contact c4=new Contact((long)112233,"jerry","jerry@.com",gender.m);
-		map.put((long)89034567, c1);
-		map.put((long)990088, c2);
-		map.put((long)556677, c3);
-		map.put((long)112233, c4);
-		 for(Map.Entry<Long, Contact> entry:map.entrySet()){  
-			 Long key=entry.getKey();  
-		        Contact c=entry.getValue();  
-		        System.out.println(key+" Details:");  
-		        System.out.println(c.phoneno+" "+c.name+" "+c.email+" "+c.g);  
-		 }
-		 System.out.println("............");
-		 System.out.println("After Sorted:");
-		        Map<Long,Contact> sortedMapDesc = new TreeMap<>(
-		                Collections.reverseOrder());
-		        sortedMapDesc.putAll(map);
-		        for(Map.Entry<Long,Contact> entry1 : sortedMapDesc.entrySet())
-		        {
-		        	 Long key=entry1.getKey();  
-				        Contact c8=entry1.getValue();  
-				        System.out.println(key+" Details:");
-		        System.out.println(c8.phoneno+" "+c8.name+" "+c8.email+" "+c8.g);  
-		        }     
-		    
-	}
+Map<Long,Contact> map=new TreeMap<Long,Contact>();                              
+Contact c1=new Contact((long)89034567,"rohith","rohith@.com",gender.m);
+Contact c2=new Contact((long)990088,"gopi","gopi@.com",gender.m);
+Contact c3=new
+Contact((long)556677,"chinni","chinni@.com",gender.Fe);
+Contact c4=new Contact((long)112233,"jerry","jerry@.com",gender.m);
+map.put((long)89034567, c1);
+map.put((long)990088, c2);
+map.put((long)556677, c3);
+map.put((long)112233, c4);
+ for(Map.Entry<Long, Contact> entry:map.entrySet()){  
+Long key=entry.getKey();  
+Contact c=entry.getValue();  
+System.out.println(key+" Details:");  
+System.out.println(c.phoneno+" "+c.name+" "+c.email+" "+c.g);  
+ }
+System.out.println("............");
+ System.out.println("After Sorted:");
+Map<Long,Contact> sortedMapDesc = new TreeMap<>(
+Collections.reverseOrder());
+sortedMapDesc.putAll(map);
+for(Map.Entry<Long,Contact> entry1 : sortedMapDesc.entrySet())
+{
+Long key=entry1.getKey();  
+Contact c8=entry1.getValue();  System.out.println(key+" Details:");
+System.out.println(c8.phoneno+" "+c8.name+" "+c8.email+" "+c8.g);  
 }
+}
+}
+
+
 //class name - Contact
+
+
 	
 package tree;
 import java.util.EnumSet;
-
 public class Contact {
 	long phoneno;
 	String name,email;
 	public enum gender {Fe,m}
 	gender g;
-	
 	public Contact(long phoneno, String name, String email, gender g) {
 		super();
 		this.phoneno = phoneno;
@@ -105,7 +104,10 @@ public class Contact {
 		this.g = g;
 	}
 }
+
+```
 Output:
+```
 990088 Details:
 990088 gopi gopi@.com m
 112233 Details:
@@ -124,7 +126,7 @@ After Sorted:
 112233 jerry jerry@.com m
 990088 Details:
 990088 gopi gopi@.com m
-
+```
 
 
 2. Write an application to store 10 unique product objects. In case there is an attempt to add a duplicate product, it should be silently rejected.
