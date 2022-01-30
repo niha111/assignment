@@ -1,24 +1,27 @@
-
+```
 C:\Users\NGOPALAM\Downloads\mongosh-1.1.7-win32-x64\bin>mongosh "mongodb+srv://cluster0.pbzos.mongodb.net/myFirstDatabase" --username 007
 Enter password: ***
 Current Mongosh Log ID: 61daa3e24d8461f519c9f02d
 Connecting to:          mongodb+srv://cluster0.pbzos.mongodb.net/myFirstDatabase
 Using MongoDB:          4.4.10
-Using Mongosh:          1.1.7
-
+Using Mongosh:          1.1.7 
 For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-
+```
                       MongoDB Exercise in mongo shell
+                      
 Connect to a running mongo instance, use a database named mongo_practice.
 Atlas atlas-awkq71-shard-0 [primary] myFirstDatabase> use mongodb_practice
 switched to db mongodb_practice
 
-
+```
 ->collection creation
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.createcollection('movies')
-
+```
+```
 -> inserting files into collection
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.movies.insertMany([{title:'Fight Club', writer: 'Chuck Palahniuko', year:1999, actors:['Brad Pitt','Edwrd Norton']}, {title:'Pulp Fiction',writer:'Quentin Tarantino',year:1994,actors:['John Travolta','Uma Thurman']},{title: 'Inglorious Basterds', writer: 'Quentin Tarantino', year: 2009, actors: ['Brad Pitt','Diane Kruger','Eli Roth']}, {title: 'The Hobbit: An Unexpected Journey', writer: 'J.R.R Tolkein', year: 2012, franchise: 'The Hobbit'}, {title: 'The Hobbit: The Desolation of Smaug', writer: 'J.R.R Tolkein', year: 2013, franchise: 'The Hobbit'}, {title: 'The Hobbit: The Battle of the Five Armies', writer: 'J.R.R Tolkein', year: 2012, franchise: 'The Hobbit', synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'}, {title:"Pee Wee Herman's Big Adventure"},{title: 'Avatar'}])
+```
+```
 {
   acknowledged: true,
   insertedIds: {
@@ -32,15 +35,16 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.movies.insertMany([{t
     '7': ObjectId("61daa6b716a10db11a817bc4")
   }
 }
+```
 
 
 
-
-
-->queries
+        Queries
 
 query the movies collection to
+
 1. get all documents
+```
 
      Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find()
 [
@@ -142,8 +146,11 @@ query the movies collection to
   { _id: ObjectId("61daa6b716a10db11a817bc4"), title: 'Avatar' }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
+```
+
 
 2. get all documents with writer set to "Quentin Tarantino"
+ ```
    Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({writer:"Quentin Tarantino"})
 [
   {
@@ -176,9 +183,12 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
   }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
+```
 
 3. get all documents where actors include "Brad Pitt"
-  Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({actors:"Brad Pitt"})
+ ```
+ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({actors:"Brad Pitt"})
+ 
 [
   {
     _id: ObjectId("61daa60a16a10db11a817bb5"),
@@ -259,8 +269,10 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
   }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
+```
 
 5. get all movies released in the 90s
+```
    Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({year:{$gt:1990,$lt:2000}})
 [
   {
@@ -292,8 +304,10 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
     actors: [ 'John Travolta', 'Uma Thurman' ]
   }
 ]
+```
 
 6. get all movies released before the year 2000 or after 2010
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$or:[{year:{gt:2010}},{year:{$lt:2000}}]})
 [
   {
@@ -326,12 +340,16 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$or:[{yea
   }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
+```
 
 
 
+     Update Documents
 
-Update Documents
-1. add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."
+1. add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to 
+  the Lonely Mountain with a spirited group of dwarves to
+  reclaim their mountain home - and the gold within it - from the dragon Smaug."
+  ```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.movies.update({title:'The Hobbit: An Unexpected Journey'}, {$set:{synopsis:"A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."}})
 DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
 {
@@ -477,24 +495,12 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{sy
     synopsis: 'Bilbo and Company are forced to engage in a war against array of combatants and keep the Lonely Mountain from falling into the hands of a rising darkness'
   }
 ]
-Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> [
-
-
-
-
-
-
-
-
-
-
-
-
-
+Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> 
+```
 
 
 4. find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
-
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}}, {synopsis:{$not:/Gandalf/}}]})
 [
   {
@@ -523,8 +529,9 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{sy
   }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
-
+```
 5. find all movies that have a synopsis that contains the word "gold" and "dragon"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}}, {synopsis:{$not:/Gandalf/}}]})
 [
   {
@@ -553,10 +560,11 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{sy
   }
 ]
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.find({$and:[{synopsis:{$regex:"gold"}}, {synopsis:{$reg$rege$reg$regex:"dragon"}}]})
+```
 
-
-
+```
  ->Delete Documents
+ ```
 1. delete the movie "Pee Wee Herman's Big Adventure"
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.remove({tittle:"Pee Wee Herman's Big Adventure"})
 { acknowledged: true, deletedCount: 1 }
@@ -575,8 +583,9 @@ creating collection
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.createCollection('users')
 { ok: 1 }
 
-
+```
 insertion
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.users.insertMany([{ username: 'GoodGuyGreg', first_name: 'GoodGuy', last_name: 'Greg' }, { username: 'ScumbagSteve', fullname: { first: 'Scumbag', last: 'Steve' } }])
 {
   acknowledged: true,
@@ -586,19 +595,24 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.users.insertMany([{ us
   }
 }
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
+```
 
 
-
-Insert the following documents into a posts collection username : GoodGuyGreg title : Passes out at party body : Wakes up early and cleans house
-username : GoodGuyGreg title : Steals your identity body : Raises your credit score username : GoodGuyGreg title : Reports a bug in your code body : Sends you a Pull Request username : ScumbagSteve title : Borrows something body : Sells it username : ScumbagSteve title : Borrows everything body : The end username : ScumbagSteve title : Forks your repo on github body : Sets to private
+Insert the following documents into a posts collection username :
+GoodGuyGreg title : Passes out at party body : Wakes up early and cleans house
+username : GoodGuyGreg title : Steals your identity body : Raises your credit score username :
+GoodGuyGreg title : Reports a bug in your code body : Sends you a Pull Request username :
+ScumbagSteve title : Borrows something body : Sells it username : ScumbagSteve title : 
+Borrows everything body : The end username : ScumbagSteve title : Forks your repo on github body : Sets to private
 
 collection- posts
+```
 creation
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.createCollection('posts')
 { ok: 1 }
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
-
-
+```
+```
 INSERTION
 
 
@@ -671,7 +685,7 @@ Atlas atlas-awkq71-shard-0[primary] mongodb_practice> db.comments.insert(
   acknowledged: true,
   insertedIds: { '0': ObjectId("61dac06216a10db11a817bc7") }
 }
-
+```
 
 
 
@@ -681,6 +695,8 @@ Atlas atlas-awkq71-shard-0[primary] mongodb_practice> db.comments.insert(
 
 ~username : ScumbagSteve comment : Denied your PR cause I found a hack post : [post_obj_id]
 where [post_obj_id] is the ObjectId of the posts document: "Reports a bug in your code"
+
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.insert(
 ... {username: 'ScumbagSteve', comment: "Denied your PR cause I found a hack",
 ..... post:ObjectId("61da8e8bf1e258629fdd6f67")})
@@ -706,8 +722,9 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.users.find().pretty()
     fullname: { first: 'Scumbag', last: 'Steve' }
   }
 ]
-
+```
 2. find all posts
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.posts.find().pretty()
 [
   {
@@ -747,9 +764,10 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.posts.find().pretty()
     body: 'Sets to private'
   }
 ]
-
+```
 
 3. find all posts that was authored by "GoodGuyGreg"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.posts.find({username:"GoodGuyGreg"})
 [
   {
@@ -771,9 +789,10 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.posts.find({username:"
     body: 'Sends you a pull request'
   }
 ]
-
+```
 
 4. find all posts that was authored by "ScumbagSteve"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.posts.find({username:"ScumbagSteve"})
 [
   {
@@ -795,11 +814,11 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.posts.find({username:
     body: 'Sets to private'
   }
 ]
-
-
+``` 
 
 
 5. find all comments
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find().pretty()
 [
   {
@@ -833,9 +852,10 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find().pretty
     post: ObjectId("61da896cf1e258629fdd6f5e")
   }
 ]
-
+```
 
 6. find all comments that was authored by "GoodGuyGreg"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> 
 db.comments.find({username:"GoodGuyGreg"})
 [
@@ -858,7 +878,9 @@ db.comments.find({username:"GoodGuyGreg"})
     post: ObjectId("61da896cf1e258629fdd6f61")
   }
 ]
+```
 7. find all comments that was authored by "ScumbagSteve"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find({username:'ScumbagSteve'})
 [
   {
@@ -874,8 +896,9 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find({usernam
     post: ObjectId("61da896cf1e258629fdd6f5e")
   }
 ]
-
+```
 8. find all comments belonging to the post "Reports a bug in your code"
+```
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find({post:ObjectId("61da896cf1e258629fdd6f5e")})
 [
   {
@@ -885,14 +908,14 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.comments.find({post:Ob
     post: ObjectId("61da896cf1e258629fdd6f5e")
   }
 ]
+```
 
 
 
 
 
 
-
-assignment 2
+                     assignment 2
 
 
 
