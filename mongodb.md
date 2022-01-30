@@ -1408,7 +1408,7 @@ db.Adresses.find(
    db.Adresses.find(
                    { name : 
                      { $regex : /^Mad/i, } 
-                   },
+                   },  
                        {
                          "name":1,
                          "borough":1,
