@@ -343,7 +343,7 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
 ```
 
 
-
+```
      Update Documents
 
 1. add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to 
@@ -380,7 +380,8 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice> db.movies.update({title:'
   upsertedCount: 0
 }
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>
-
+```
+```
 Text Search
 1. find all movies that have a synopsis that contains the word "Bilbo"
 Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.movies.find({synopsis:{$regex:"Bilbo"}})
