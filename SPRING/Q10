@@ -2,7 +2,7 @@ JAVA PROGRAM TO DEMONSTRATE APPLICATION CONTEXT AWARE INTERFACE
 
  ApplicationContextAware is used when an object required.
  
- 
+  
  
  package SPRINGNI;
 
