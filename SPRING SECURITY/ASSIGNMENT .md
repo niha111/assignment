@@ -97,5 +97,21 @@ public class BootApplication {
 ![Screenshot (12)](https://user-images.githubusercontent.com/97155964/152316684-2266618c-6a1c-4fbe-9f52-4c18c638b963.png)
 
 
+# 2nd question
+
+**by using custom credentials **
+
+for using custom credentials we need to modify the application.properties
+
+
+```
+application.properties
+
+spring.security.user.name=niharika
+spring.security.user.password=gopalm
+```
+
+![Screenshot (13)](https://user-images.githubusercontent.com/97155964/152323198-38e5dc5f-fa56-4d63-b9a7-8d3bcec83d7f.png)
+![Screenshot (14)](https://user-images.githubusercontent.com/97155964/152323220-ca8ff1e0-f578-4594-a53c-c9f6cf131bc6.png)
 
 
