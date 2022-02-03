@@ -27,7 +27,7 @@ Atlas atlas-awkq71-shard-0 [primary] mongodb_practice>  db.movies.insertMany([{t
   insertedIds: {
     '0': ObjectId("61daa6b716a10db11a817bbd"),
     '1': ObjectId("61daa6b716a10db11a817bbe"),
-    '2': ObjectId("61daa6b716a10db11a817bbf"),
+    '2': ObjectId("61daa6b716a10db11a817bbf"), 
     '3': ObjectId("61daa6b716a10db11a817bc0"),
     '4': ObjectId("61daa6b716a10db11a817bc1"),
     '5': ObjectId("61daa6b716a10db11a817bc2"),
