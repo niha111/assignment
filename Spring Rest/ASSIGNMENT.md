@@ -451,7 +451,7 @@ public interface UserRepository extends MongoRepository<User,String>{
 ```
 ```
 APPLICATIONPROPETIES
-spring.data.mongodb.uri=mongodb+srv://Manisha:Manu#1999@cluster0.d6fbp.mongodb.net/datab01?retryWrites=true&w=majority
+spring.data.mongodb.uri=mongodb+srv://NIHARIKA:GOPALAM@cluster0.d6fbp.mongodb.net/datab01?retryWrites=true&w=majority
 ```
 
 **Q9**
